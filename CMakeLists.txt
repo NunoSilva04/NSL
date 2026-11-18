@@ -9,7 +9,21 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-set(source_files Source/nsl_math.cpp)
+set(source_files Source/nsl_string/nsl_string.cpp)
+
+if(LINUX)
+    # IO
+    list(APPEND source_files Source/nsl_io/Linux/nsl_io.cpp)
+
+elseif(WIN32)
+
+elseif(ANDROID)
+
+elseif(APPLE)
+
+elseif(IOS)
+
+endif()
 
 add_library(${PROJECT_NAME} STATIC ${source_files})
 target_include_directories(${PROJECT_NAME} PUBLIC 
