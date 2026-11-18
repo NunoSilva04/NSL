@@ -2,10 +2,13 @@
 #define __NSL_IO_HPP__
 
 #include "nsl_string.hpp"
+#include "nsl_types.hpp"
 
 namespace nsl {
     namespace io_detail {
 	void print_argument(const nsl::string &string);
+	void print_argument(const char *string);
+	void print_argument(const nsl::types::u32 &u32);
 
 	template<typename Last_Argument>
 	void print_all_arguments(const Last_Argument &last){
