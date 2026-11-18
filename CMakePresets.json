@@ -1,0 +1,47 @@
+{
+    "version": 6,
+    "cmakeMinimumRequired": {
+	"major": 3,
+	"minor": 20,
+	"patch": 0
+    },
+    "configurePresets": [
+	{
+	    "name": "nsl_linux_debug_preset",
+	    "generator": "Ninja",
+	    "binaryDir": "${sourceDir}/Build/Linux/Debug",
+	    "cacheVariables": {
+		"CMAKE_CXX_COMPILER": "clang++",
+		"CMAKE_BUILD_TYPE": "Debug",
+		"CMAKE_INSTALL_PREFIX": "/usr/local",
+		"CMAKE_LIBRARY_OUTPUT_DIRECTORY": "${sourceDir}/Lib",
+		"CMAKE_ARCHIVE_OUTPUT_DIRECTORY": "${sourceDir}/Lib"
+	    }
+	}
+    ],
+
+
+
+    "buildPresets": [
+	{
+	    "name": "nsl_linux_debug_build",
+	    "configurePreset": "nsl_linux_debug_preset",
+	    "condition": {
+		"type": "equals",
+		"lhs": "${hostSystemName}",
+		"rhs": "Linux"
+	    }
+	}
+    ],
+
+    
+    "workflowPresets": [
+	{
+	    "name": "nsl_linux_debug",
+	    "steps": [
+		{"type": "configure", "name": "nsl_linux_debug_preset"},
+		{"type": "build", "name": "nsl_linux_debug_build"}
+	    ]
+	}
+    ]
+}
