@@ -9,6 +9,7 @@ namespace nsl {
 	void print_argument(const nsl::string &string);
 	void print_argument(const char *string);
 	void print_argument(const nsl::types::u32 &u32);
+	void print_argument(const nsl::types::s32 &s32);
 
 	template<typename Last_Argument>
 	void print_all_arguments(const Last_Argument &last){

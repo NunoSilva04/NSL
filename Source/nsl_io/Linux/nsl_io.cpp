@@ -36,5 +36,17 @@ namespace nsl {
 
 	    return;
 	}
+
+	void print_argument(const nsl::types::s32 &s32){
+	    nsl::types::u32 magnitude = static_cast<nsl::types::u32>(s32);
+
+	    if(s32 < 0){
+		write(STDOUT_FILENO, "-", 1);
+		magnitude = 0u - magnitude;
+	    }
+
+	    print_argument(magnitude);
+	    return;
+	}
     }
 }
