@@ -16,6 +16,8 @@ if(LINUX)
     list(APPEND source_files Source/nsl_io/Linux/nsl_io.cpp)
 
 elseif(WIN32)
+    # IO
+    list(APPEND source_files Source/nsl_io/Windows/nsl_io.cpp)
 
 elseif(ANDROID)
 

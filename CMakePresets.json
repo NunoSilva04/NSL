@@ -17,6 +17,19 @@
 		"CMAKE_LIBRARY_OUTPUT_DIRECTORY": "${sourceDir}/Lib",
 		"CMAKE_ARCHIVE_OUTPUT_DIRECTORY": "${sourceDir}/Lib"
 	    }
+	},
+
+	{
+		"name": "nsl_windows_debug_preset",
+		"generator": "Ninja",
+		"binaryDir": "${sourceDir}/Build/Windows/Debug",
+		"cacheVariables": {
+			"CMAKE_CXX_COMPILER": "clang++",
+			"CMAKE_BUILD_TYPE": "Debug",
+			"CMAKE_INSTALL_PREFIX": "C:/Program Files/nsl",
+			"CMAKE_LIBRARY_OUTPUT_DIRECTORY": "${sourceDir}/Lib",
+			"CMAKE_ARCHIVE_OUTPUT_DIRECTORY": "${sourceDir}/Lib"
+		}
 	}
     ],
 
@@ -31,6 +44,16 @@
 		"lhs": "${hostSystemName}",
 		"rhs": "Linux"
 	    }
+	},
+
+	{
+		"name": "nsl_windows_debug_build",
+		"configurePreset": "nsl_windows_debug_preset",
+		"condition": {
+			"type": "equals",
+			"lhs": "${hostSystemName}",
+			"rhs": "Windows"
+		}
 	}
     ],
 
@@ -42,6 +65,14 @@
 		{"type": "configure", "name": "nsl_linux_debug_preset"},
 		{"type": "build", "name": "nsl_linux_debug_build"}
 	    ]
+	},
+
+	{
+		"name": "nsl_windows_debug",
+		"steps": [
+			{"type": "configure", "name": "nsl_windows_debug_preset"},
+			{"type": "build", "name": "nsl_windows_debug_build"}
+		]
 	}
     ]
 }
