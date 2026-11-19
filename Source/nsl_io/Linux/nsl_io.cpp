@@ -8,15 +8,15 @@ namespace nsl {
 	void write_argument(const io::NSL_CONSOLE_TYPE console_type, const nsl::string &string){
 	    switch(console_type){
 		default:
-		case io::NSL_CONSOLE_TYPE::OUTPUT:
+		case io::NSL_CONSOLE_TYPE::NSL_CONSOLE_TYPE_OUTPUT:
 		    write(STDOUT_FILENO, string.data(), string.length());
 		    break;
 
-		case io::NSL_CONSOLE_TYPE::INPUT:
+		case io::NSL_CONSOLE_TYPE::NSL_CONSOLE_TYPE_INPUT:
 		    write(STDIN_FILENO, string.data(), string.length());
 		    break;
 
-		case io::NSL_CONSOLE_TYPE::ERROR:
+		case io::NSL_CONSOLE_TYPE::NSL_CONSOLE_TYPE_ERROR:
 		    write(STDERR_FILENO, string.data(), string.length());
 		    break;
 	    }
@@ -48,15 +48,15 @@ namespace nsl {
 	    index += 1;	// Because the index always ends up one digit before the actual string
 	    switch(console_type){
 		default:
-		case io::NSL_CONSOLE_TYPE::OUTPUT:
+		case io::NSL_CONSOLE_TYPE::NSL_CONSOLE_TYPE_OUTPUT:
 		    write(STDOUT_FILENO, &buffer[index], buffer_size - index);
 		    break;
 
-		case io::NSL_CONSOLE_TYPE::INPUT:
+		case io::NSL_CONSOLE_TYPE::NSL_CONSOLE_TYPE_INPUT:
 		    write(STDIN_FILENO, &buffer[index], buffer_size - index);
 		    break;
 
-		case io::NSL_CONSOLE_TYPE::ERROR:
+		case io::NSL_CONSOLE_TYPE::NSL_CONSOLE_TYPE_ERROR:
 		    write(STDERR_FILENO, &buffer[index], buffer_size - index);
 		    break;
 	    }
@@ -70,15 +70,15 @@ namespace nsl {
 	    if(s32 < 0){
 		switch(console_type){
 		    default:
-		    case io::NSL_CONSOLE_TYPE::OUTPUT:
+		    case io::NSL_CONSOLE_TYPE::NSL_CONSOLE_TYPE_OUTPUT:
 			write(STDOUT_FILENO, "-", 1);
 			break;
 
-		    case io::NSL_CONSOLE_TYPE::INPUT:
+		    case io::NSL_CONSOLE_TYPE::NSL_CONSOLE_TYPE_INPUT:
 			write(STDIN_FILENO, "-", 1);
 			break;
 
-		    case io::NSL_CONSOLE_TYPE::ERROR:
+		    case io::NSL_CONSOLE_TYPE::NSL_CONSOLE_TYPE_ERROR:
 			write(STDERR_FILENO, "-", 1);
 			break;
 		}

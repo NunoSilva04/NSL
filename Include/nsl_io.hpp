@@ -6,10 +6,10 @@
 
 namespace nsl {
     namespace io {
-	enum NSL_CONSOLE_TYPE{
-	    OUTPUT,
-	    INPUT,
-	    ERROR,
+	enum class NSL_CONSOLE_TYPE{
+	    NSL_CONSOLE_TYPE_OUTPUT,
+	    NSL_CONSOLE_TYPE_INPUT,
+	    NSL_CONSOLE_TYPE_ERROR,
 	};
     }	
 	

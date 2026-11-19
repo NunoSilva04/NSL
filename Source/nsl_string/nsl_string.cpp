@@ -88,9 +88,9 @@ namespace nsl {
     }
 
     void string::print_info(void){
-	nsl::io::write_to_console(nsl::io::NSL_CONSOLE_TYPE::OUTPUT, "String Capacity: ", this->string_capacity, "\n");
-	nsl::io::write_to_console(nsl::io::NSL_CONSOLE_TYPE::OUTPUT, "String Length: ", this->string_length, "\n");
-	nsl::io::write_to_console(nsl::io::NSL_CONSOLE_TYPE::OUTPUT, "String Data: ", this->string_data, "\n");
+	nsl::io::write_to_console(nsl::io::NSL_CONSOLE_TYPE::NSL_CONSOLE_TYPE_OUTPUT, "String Capacity: ", this->string_capacity, "\n");
+	nsl::io::write_to_console(nsl::io::NSL_CONSOLE_TYPE::NSL_CONSOLE_TYPE_OUTPUT, "String Length: ", this->string_length, "\n");
+	nsl::io::write_to_console(nsl::io::NSL_CONSOLE_TYPE::NSL_CONSOLE_TYPE_OUTPUT, "String Data: ", this->string_data, "\n");
 	
 	return;
     }
