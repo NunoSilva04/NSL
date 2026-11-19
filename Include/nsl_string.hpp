@@ -8,8 +8,11 @@ namespace nsl {
 	public:
 	    string(const char *data);
 	    string(char *data) : string(static_cast<const char *>(data)) {};
+	    string();
+	    string(const string &data) : string(data.data()) {};
 	    ~string();
 	    string &operator=(const string &string_2);
+	    string &operator=(const char *string);
 	    string &operator=(char *string);
 
 	    nsl::types::u32 length(void) const;
@@ -24,6 +27,7 @@ namespace nsl {
 	    char *string_data;
 	    nsl::types::u32 string_length;
 	    nsl::types::u32 string_capacity;
+	    static constexpr nsl::types::u32 default_string_capacity = 32;
 
 	    static nsl::types::u32 length_ex(const char *data);
 	    static void copy_ex(char *string, const char *data);

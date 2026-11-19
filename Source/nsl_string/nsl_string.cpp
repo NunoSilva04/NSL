@@ -1,12 +1,22 @@
 #include "nsl_string.hpp"
 #include "nsl_types.hpp"
+#include "nsl_io.hpp"
 
 namespace nsl {
     string::string(const char *data){
 	this->string_length = length_ex(data);	
-	this->string_capacity = this->string_length * 4;
+	if(this->string_length <= 1)
+	    this->string_capacity = this->default_string_capacity;
+	else
+	    this->string_capacity = this->string_length * 4;
 	this->string_data = new char[this->string_capacity]();
 	copy_ex(this->string_data, data);
+    }
+
+    string::string(){
+	this->string_length = 0;
+	this->string_capacity = this->default_string_capacity;
+	this->string_data = new char[this->string_capacity]();
     }
 
     string::~string(){
@@ -24,7 +34,7 @@ namespace nsl {
 	return *this;
     }
 
-    string &string::operator=(char *string){
+    string &string::operator=(const char *string){
 	nsl::types::u32 str_len = length_ex(string);
 	if(this->capacity() < str_len){
 	    this->resize(str_len * 2);
@@ -34,6 +44,10 @@ namespace nsl {
 	this->string_length = str_len;
 
 	return *this;
+    }
+
+    string &string::operator=(char *string){
+	return *this = static_cast<const char *>(string);
     }
 
     nsl::types::u32 string::length(void) const{
@@ -54,7 +68,10 @@ namespace nsl {
     }
 
     void string::resize(nsl::types::u32 specific_capacity){
-	this->string_capacity = specific_capacity;	
+	if(specific_capacity <= this->string_capacity)
+	    this->string_capacity *=2;
+	else
+	    this->string_capacity = specific_capacity;	
 	char *temp_string = new char[this->string_capacity]();
 
 	copy_ex(temp_string, this->string_data);
@@ -71,6 +88,9 @@ namespace nsl {
     }
 
     void string::print_info(void){
+	nsl::io::write_to_console(nsl::io::NSL_CONSOLE_TYPE::OUTPUT, "String Capacity: ", this->string_capacity, "\n");
+	nsl::io::write_to_console(nsl::io::NSL_CONSOLE_TYPE::OUTPUT, "String Length: ", this->string_length, "\n");
+	nsl::io::write_to_console(nsl::io::NSL_CONSOLE_TYPE::OUTPUT, "String Data: ", this->string_data, "\n");
 	
 	return;
     }
@@ -90,5 +110,7 @@ namespace nsl {
 	    i++;
 	}
 	string[i] = '\0';
+
+	return;
     }
 }

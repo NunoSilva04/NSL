@@ -5,21 +5,21 @@
 
 namespace nsl {
     namespace io_detail {
-	void print_argument(const io::NSL_CONSOLE_TYPE console_type, const nsl::string &string){
+	void write_argument(const io::NSL_CONSOLE_TYPE console_type, const nsl::string &string){
         HANDLE output; 
 
         switch(console_type){
             default:
-            case io::NSL_CONSOLE_TYPE::NSL_CONSOLE_TYPE_OUTPUT:
+            case io::NSL_CONSOLE_TYPE::OUTPUT:
                 output = GetStdHandle(STD_OUTPUT_HANDLE);
                 WriteFile(output, string.data(), string.length(), nullptr, nullptr);
                 break;
 
-            case io::NSL_CONSOLE_TYPE::NSL_CONSOLE_TYPE_INPUT:
+            case io::NSL_CONSOLE_TYPE::INPUT:
 
                 break;
 
-            case io::NSL_CONSOLE_TYPE::NSL_CONSOLE_TYPE_ERROR:
+            case io::NSL_CONSOLE_TYPE::ERROR:
 
                 break;
         }
@@ -27,22 +27,22 @@ namespace nsl {
 	    return;
 	}
 	
-	void print_argument(const io::NSL_CONSOLE_TYPE console_type, const char *string){
+	void write_argument(const io::NSL_CONSOLE_TYPE console_type, const char *string){
         HANDLE output; 
 	    nsl::string nsl_string(string);
 
         switch(console_type){
             default:
-            case io::NSL_CONSOLE_TYPE::NSL_CONSOLE_TYPE_OUTPUT:
+            case io::NSL_CONSOLE_TYPE::OUTPUT:
                 output = GetStdHandle(STD_OUTPUT_HANDLE);
                 WriteFile(output, nsl_string.data(), nsl_string.length(), nullptr, nullptr);
                 break;
 
-            case io::NSL_CONSOLE_TYPE::NSL_CONSOLE_TYPE_INPUT:
+            case io::NSL_CONSOLE_TYPE::INPUT:
 
                 break;
 
-            case io::NSL_CONSOLE_TYPE::NSL_CONSOLE_TYPE_ERROR:
+            case io::NSL_CONSOLE_TYPE::ERROR:
 
                 break;
         }
@@ -50,7 +50,7 @@ namespace nsl {
 	    return;
 	}
 
-	void print_argument(const io::NSL_CONSOLE_TYPE console_type, const nsl::types::u32 &u32){
+	void write_argument(const io::NSL_CONSOLE_TYPE console_type, const nsl::types::u32 &u32){
 	    constexpr nsl::types::u32 buffer_size = 10;
 	    char buffer[buffer_size] = {};
 	    nsl::types::u32 index = buffer_size - 1, number = u32;
@@ -68,16 +68,16 @@ namespace nsl {
         HANDLE output;
         switch(console_type){
             default:
-            case io::NSL_CONSOLE_TYPE::NSL_CONSOLE_TYPE_OUTPUT:
+            case io::NSL_CONSOLE_TYPE::OUTPUT:
                 output = GetStdHandle(STD_OUTPUT_HANDLE);
                 WriteFile(output, &buffer[index], buffer_size - index, nullptr, nullptr);
                 break;
 
-            case io::NSL_CONSOLE_TYPE::NSL_CONSOLE_TYPE_INPUT:
+            case io::NSL_CONSOLE_TYPE::INPUT:
 
                 break;
 
-            case io::NSL_CONSOLE_TYPE::NSL_CONSOLE_TYPE_ERROR:
+            case io::NSL_CONSOLE_TYPE::ERROR:
 
                 break;
         }
@@ -85,14 +85,14 @@ namespace nsl {
 	    return;
 	}
 
-	void print_argument(const io::NSL_CONSOLE_TYPE console_type, const nsl::types::s32 &s32){
+	void write_argument(const io::NSL_CONSOLE_TYPE console_type, const nsl::types::s32 &s32){
 	    nsl::types::u32 magnitude = static_cast<nsl::types::u32>(s32);
 
 	    if(s32 < 0){
 		    magnitude = 0u - magnitude;
 	    }
 
-	    print_argument(console_type, magnitude);
+	    write_argument(console_type, magnitude);
 	    return;
 	}
     }
